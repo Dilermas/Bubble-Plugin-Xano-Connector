@@ -1,0 +1,27 @@
+{
+    "category": "plugins",
+    "display": "Join Realtime channel (beta)",
+    "fields": {
+        "AFA": {
+            "caption": "Channel name",
+            "doc": "Define the name of the channel you would like to join",
+            "editor": "DynamicValue",
+            "name": "channel",
+            "rank": 0,
+            "value": "text"
+        },
+        "AFY": {
+            "caption": "Channel options",
+            "default_val": "{\"presence\": true}",
+            "doc": "",
+            "editor": "DynamicValue",
+            "is_list": false,
+            "long_text": true,
+            "name": "channel_options",
+            "optional": true,
+            "rank": 1,
+            "value": "text"
+        }
+    },
+    "type": "client_side"
+}

@@ -1,5 +1,6 @@
 {
-    "caption": "Log the Xano user in via",
+    "caption": "Xano auth log in (deprecated - see notes)",
+    "doc": "Please replace with the action 'Log the Xano user in'",
     "fields": {
         "AAu": {
             "caption": "email",

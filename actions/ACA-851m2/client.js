@@ -3,7 +3,10 @@ function(properties, context) {
 
 	window.xano.setAuthToken(properties.auth_token);
     
-    window.xanoGetUser();
-
+    if (properties.get_user_details) {
+        
+        window.xanoGetUser();
+    
+    } 
 
 }

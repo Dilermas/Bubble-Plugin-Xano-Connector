@@ -1,3 +1,4 @@
 {
-    "caption": "Reset"
+    "caption": "Reset",
+    "doc": "Clears the most recent response received by the action element"
 }

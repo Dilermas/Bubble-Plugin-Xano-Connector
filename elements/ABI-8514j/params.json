@@ -20,10 +20,21 @@
             "name": "threw_an_error"
         }
     },
+    "fields": {
+        "AEL": {
+            "caption": "Custom response",
+            "doc": "Create a custom data type in the API connector to return a custom response from Xano",
+            "editor": "custom_type",
+            "name": "custom_response",
+            "optional": true,
+            "rank": 0
+        }
+    },
     "icon": "ion-ios-contact",
     "states": {
         "ABB": {
             "caption": "AuthToken",
+            "doc": "",
             "initialization_code": {
                 "fn": "function(properties, context) {\n\n    try {\n\n        return localStorage.getItem('AuthToken')\n\n    } catch(err) {\n\n    }\n\n\n}"
             },
@@ -32,16 +43,18 @@
         },
         "ABC": {
             "caption": "First name",
+            "doc": "",
             "initialization_code": {
-                "fn": "function(properties, context) {\n\n    try {\n\n        return localStorage.getItem('xano_object').nameFirst\n\n    } catch(err) {\n\n    }\n\n\n\n}"
+                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_user')).nameFirst\n\n    } catch(err) {\n\n    }\n\n\n}"
             },
             "name": "name_first",
             "value": "text"
         },
         "ABD": {
             "caption": "Last name",
+            "doc": "",
             "initialization_code": {
-                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_object')).lastName;\n\n    } catch(err) {\n\n    }\n\n}"
+                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_user')).nameLast;\n\n    } catch(err) {\n\n    }\n\n}"
             },
             "name": "name_last",
             "value": "text"
@@ -50,7 +63,7 @@
             "caption": "Email",
             "doc": "",
             "initialization_code": {
-                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_object')).email;\n\n    } catch(err) {\n\n    }\n\n}"
+                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_user')).email;\n\n    } catch(err) {\n\n    }\n}"
             },
             "name": "email",
             "value": "text"
@@ -59,7 +72,7 @@
             "caption": "is logged in",
             "doc": "",
             "initialization_code": {
-                "fn": "function(properties, context) {\n\n    try {\n\n        let user = localStorage.getItem('AuthToken')\n\n        return !user === false\n\n    } catch(err) {\n\n    }\n\n}"
+                "fn": "function(properties, context) {\n\n    try {\n\n        let user = localStorage.getItem('AuthToken')\n\n        return !user === false\n\n    } catch(err) {\n\n    }\n\n\n}"
             },
             "name": "is_logged_in",
             "value": "boolean"
@@ -87,6 +100,22 @@
             },
             "name": "status_code",
             "value": "number"
+        },
+        "AEM": {
+            "caption": "Custom response",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n    try {\n\n        return JSON.parse(localStorage.getItem('xano_user')).customResponse;\n\n    } catch(err) {\n\n    }\n\n\n}"
+            },
+            "name": "custom_response",
+            "value": "custom_data_AEL"
+        },
+        "AEy": {
+            "caption": "Refresh",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "refresh",
+            "value": "text"
         }
     }
 }

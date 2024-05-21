@@ -9,7 +9,7 @@
             "value": "text"
         },
         "ACO": {
-            "caption": "Parameters",
+            "caption": "Custom parameters",
             "doc": "This should be a valid JSON object containing the parameters your endpoint is expecting to receive.",
             "editor": "DynamicValue",
             "long_text": true,
@@ -25,6 +25,20 @@
             "name": "method",
             "options": "GET,POST,PUT,PATCH,DELETE,HEAD",
             "rank": 0
+        },
+        "AEG": {
+            "caption": "Simple parameters",
+            "doc": "",
+            "editor": "key_value_list",
+            "name": "parameters_simple",
+            "rank": 4,
+            "value": "text"
+        },
+        "AEH": {
+            "caption": "If you are uncomfortable with JSON you can add your parameters using the Key/Value input below. Please note that you cannot send nested objects or arrays using the these inputs. Please add any nested or complex parameters in the Custom parameters input above.",
+            "editor": "Label",
+            "name": "information",
+            "rank": 3
         }
     }
 }

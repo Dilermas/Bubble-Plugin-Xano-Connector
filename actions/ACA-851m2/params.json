@@ -27,6 +27,15 @@
             "editor": "Label",
             "name": "information",
             "rank": 2
+        },
+        "AED": {
+            "caption": "Get user details",
+            "default_val": true,
+            "doc": "Set this to false if you are using a platform API key",
+            "editor": "DynamicValue",
+            "name": "get_user_details",
+            "rank": 4,
+            "value": "boolean"
         }
     },
     "type": "client_side"

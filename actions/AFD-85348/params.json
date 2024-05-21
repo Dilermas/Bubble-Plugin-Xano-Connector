@@ -1,0 +1,15 @@
+{
+    "category": "plugins",
+    "display": "Leave Realtime channel  (beta)",
+    "fields": {
+        "AFC": {
+            "caption": "Channel name",
+            "doc": "Define the name of the channel you would like to leave",
+            "editor": "DynamicValue",
+            "name": "channel",
+            "rank": 0,
+            "value": "text"
+        }
+    },
+    "type": "client_side"
+}

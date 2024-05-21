@@ -2,12 +2,11 @@ function(properties, context) {
 
     try {
 
-        return localStorage.getItem('xano_object').nameFirst
+        return JSON.parse(localStorage.getItem('xano_user')).nameFirst
 
     } catch(err) {
 
     }
-
 
 
 }

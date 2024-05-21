@@ -4,7 +4,18 @@ function(instance, properties, context) {
         publish = instance.publishState,
         trigger = instance.triggerEvent,
         endpoint = properties.endpoint,
+        params = {};
+    
+    if (properties.params) {
         params = JSON.parse(properties.params);
+    }
+
+
+    properties.parameters_simple.map(x=>{
+
+        params[x.key] = x.value;
+
+    })                  
 
     if (endpoint[0] !== "/") {
 
@@ -34,11 +45,8 @@ function(instance, properties, context) {
         case "POST":
             data.post(endpoint, params)
             break;
-        default:
-   }
 
-
-
+                            }
 
 
 }

@@ -3,7 +3,7 @@
     "display": "Log the Xano user out",
     "fields": {
         "ACF": {
-            "caption": "This action will log the user out from the browser they are using and will trigger events on the Xano Auth element indicating the user has been logged out. Please make sure to update any data you may have saved to the current user as well when this action is run.",
+            "caption": "This action will log the user out from the browser they are using and will trigger events on the Xano User element indicating the user has been logged out. Please make sure to update any data you may have saved to the current user as well when this action is run.",
             "editor": "Label",
             "name": "information",
             "rank": 0

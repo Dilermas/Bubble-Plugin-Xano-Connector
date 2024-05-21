@@ -2,7 +2,7 @@ function(properties, context) {
 
     try {
 
-        return JSON.parse(localStorage.getItem('xano_object')).lastName;
+        return JSON.parse(localStorage.getItem('xano_user')).nameLast;
 
     } catch(err) {
 

@@ -3,6 +3,9 @@ function(instance, context) {
     let data = instance.data,
         publish = instance.publishState,
         trigger = instance.triggerEvent;
+    
+    // Set var to prevent query from running more than every 500ms
+    data.pauseQuery = false;
 
     data.init = function(groupURL){
 
@@ -20,7 +23,18 @@ function(instance, context) {
 
     data.query = function(){
 
-        data.xano.get(data.endpoint,data.params).then(
+        if (!data.loadQuery || data.pauseQuery) {
+
+            return;
+        }
+        
+        data.pauseQuery = true;
+        
+        setTimeout(()=> {data.pauseQuery = false},500)
+
+        publish('is_fetching_data', true)
+
+        data.xano.get(data.endpoint,data.params,data.headers).then(
 
             // Success
 
@@ -33,8 +47,6 @@ function(instance, context) {
                 const body = res.getBody('_api_c2_');  
 
                 const bodyNew = res.getBody();
-
-
 
                 if (body._api_c2_items){
 
@@ -57,6 +69,9 @@ function(instance, context) {
                 // reset error messages
                 publish('error_message', null);
                 publish('error_code', null);
+
+                publish('is_fetching_data', false)
+                publish('initial_fetch_complete', true)
             },
 
             // Error
@@ -73,25 +88,42 @@ function(instance, context) {
                 publish('error_code', body.code);
                 publish('status_code', res.getStatusCode());
                 trigger('threw_an_error');
+
+                publish('is_fetching_data', false)
             }
         );
 
     }
 
-    document.addEventListener('visibilitychange', function () {
+    data.clearQuery = function() {
 
-        // console.log('visbility change');
-        // console.log(document.visibilityState);
+        publish('data',null);
+        publish('page_current',null);
+        publish('page_next',null);
+        publish('page_prev',null);
+        publish('page_total',null);
+        publish('items_received',null);
+        publish('items_total',null);
+        publish('raw_json_body', null);
 
-        if (document.visibilityState === 'visible' && data.xano.hasAuthToken()) {
+        publish('error_message', null);
+        publish('error_code', null);
+        publish('status_code', null);
+    }
 
+    document.addEventListener('visibilitychange', function (e) {
+
+
+        if (document.visibilityState === 'visible' && data.xano.hasAuthToken() && data.autoRefresh) {
+
+            // console.log(e);
             data.query();
 
         }
 
-    });
+    }); 
 
-   function flattenObj(data, parent = null) {
+    function flattenObj(data, parent = null) {
         // Create an empty object .
         let dataMap = {};
         // Loop over the data object that was given .
@@ -127,6 +159,9 @@ function(instance, context) {
     }
 
     data.flattenObj = flattenObj;
+
+
+
 
 
 

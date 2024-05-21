@@ -1,0 +1,28 @@
+{
+    "category": "plugins",
+    "display": "Log the Xano user in",
+    "fields": {
+        "ADz": {
+            "caption": "Email",
+            "editor": "DynamicValue",
+            "name": "email",
+            "rank": 0,
+            "value": "text"
+        },
+        "AEA": {
+            "caption": "Password",
+            "editor": "DynamicValue",
+            "name": "password",
+            "rank": 1,
+            "value": "text"
+        },
+        "AEC": {
+            "caption": "Additional fields",
+            "editor": "key_value_list",
+            "name": "additional_fields",
+            "rank": 2,
+            "value": "text"
+        }
+    },
+    "type": "client_side"
+}

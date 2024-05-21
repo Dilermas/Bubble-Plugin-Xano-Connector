@@ -4,6 +4,9 @@ function(instance, properties, context) {
         publish = instance.publishState,
         trigger = instance.triggerEvent;
     
+    data.loadQuery = properties.load_data;
+    data.autoRefresh = properties.auto_refresh;
+    
     if (!data.xano) {
         
         data.init(properties.group_url);
@@ -26,6 +29,16 @@ function(instance, properties, context) {
     } else {
         
         data.params = {}
+        
+    }
+    
+    if (properties.headers) {
+        
+        data.headers = JSON.parse(properties.headers);
+        
+    } else {
+        
+        data.headers = {}
         
     }
     

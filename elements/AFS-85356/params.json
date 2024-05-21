@@ -1,0 +1,76 @@
+{
+    "add_is_visible": true,
+    "category": "visual elements",
+    "default_dim": {
+        "height": 5,
+        "width": 5
+    },
+    "display": "Xano Realtime Listener (beta)",
+    "events": {
+        "AFN": {
+            "caption": "Message received",
+            "name": "message_received"
+        },
+        "AFT": {
+            "caption": "Event received",
+            "name": "event_received"
+        }
+    },
+    "fields": {
+        "AFO": {
+            "caption": "Channel name",
+            "editor": "DynamicValue",
+            "name": "channel_name",
+            "optional": true,
+            "rank": 0,
+            "value": "text"
+        },
+        "AFP": {
+            "caption": "Keep (n) messages",
+            "default_val": 10,
+            "doc": "Define the number of messages you would like to keep in this elements history",
+            "editor": "DynamicValue",
+            "name": "history_retention",
+            "rank": 1,
+            "value": "number"
+        },
+        "AFV": {
+            "caption": "Return type",
+            "editor": "custom_type",
+            "name": "return_type",
+            "rank": 2
+        }
+    },
+    "icon": "ion-android-checkbox-blank",
+    "property_applications": {
+        "resizable": true
+    },
+    "states": {
+        "AFQ": {
+            "caption": "Payloads",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "is_list": true,
+            "name": "payloads",
+            "value": "text"
+        },
+        "AFR": {
+            "caption": "Messages",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "is_list": true,
+            "name": "messages",
+            "value": "text"
+        },
+        "AFW": {
+            "caption": "Return type",
+            "initialization_code": {
+                "fn": "function(properties, context) {\n\n\n\n}"
+            },
+            "name": "return_type",
+            "value": "custom_data_AFV"
+        }
+    }
+}

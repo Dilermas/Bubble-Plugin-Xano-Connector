@@ -1,2 +1,162 @@
 <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@xano/js-sdk/dist/xano.min.js"></script>
 
+<script> 
+
+    window.xano = new XanoClient({
+        'apiGroupBaseUrl': '_*_API Group URL_*_',
+        'dataSource': '_*_Xano Data Source_*_',
+        'realtimeConnectionHash': '_*_Realtime Hash_*_'
+    });
+
+    window.xanoHooks = []; // Create the array to initialize element instances
+    window.xanoRealtime = {}; 	// Create an array of realtime channels
+    window.xanoRealtimeListeners = [] // Create an array of realtime listeners
+
+
+    // Sign the user up
+
+    window.xanoSignUserUp = function(body) {
+
+
+        xano.post('/auth/signup', body).then(
+
+            // Success
+
+            function(res) {
+
+                let body = res.getBody();
+                xano.setAuthToken(body.authToken);  
+
+                xanoGetUser();
+
+            },
+
+            // Error
+
+            function(error) {
+
+                var res = error.getResponse();
+
+                let body = res.getBody();
+
+                xanoHooks.map(x => {
+                    x.data.error(body.message, body.code, res.getStatusCode())
+                })
+            }
+        )
+    }
+
+
+    // Log the user in
+
+    window.xanoLogUserIn = function(body) {
+
+        xano.post('/auth/login',body).then(
+
+            // Success
+
+            function(res) {
+
+                let body = res.getBody();
+                xano.setAuthToken(body.authToken);  
+
+                xanoGetUser();
+            },
+
+            // Error
+
+            function(error) {
+
+                var res = error.getResponse();
+
+                let body = res.getBody();
+
+                xanoHooks.map(x => {
+                    x.data.error(body.message, body.code, res.getStatusCode())
+                })
+            }
+        );
+
+    }
+
+
+    // Log the user out
+
+    window.xanoLogUserOut = function() {
+
+        xano.setAuthToken(null);
+
+        localStorage.setItem('xano_user_is_logged_in', false)
+        localStorage.setItem('xano_user','{}');
+
+        xanoHooks.map(x => {
+            x.data.log_out()
+        })
+    }
+
+
+    // Get the user
+    window.xanoGetUser = function() {
+
+        window.xano.get('/auth/me').then(
+            // Success
+            function(res) {
+
+                let user = {
+                    nameFirst: res.body.name_first,
+                    nameLast: res.body.name_last,
+                    email: res.body.email,
+                    customResponse: res.getBody('_api_c2_')
+                }
+
+                localStorage.setItem('xano_user', JSON.stringify(user));
+
+                localStorage.setItem('xano_user_is_logged_in', true);
+
+                window.xanoHooks.map(x => {
+                    x.data.set_user(user)
+                })
+            },
+
+            // Error
+            function(error) {
+
+                var res = error.getResponse();
+
+                let body = res.getBody();
+
+                xanoHooks.map(x => {
+                    x.data.error(body.message, body.code, res.getStatusCode())
+                })
+
+                window.xanoLogUserOut();
+            }
+        );
+
+    }
+
+
+    // Add event listener to check the users login status when the visibility of the page changes
+
+    document.addEventListener('visibilitychange', function () {
+
+        if (document.visibilityState === 'visible') {
+
+            // console.log('get user');
+
+            if (window.xano.hasAuthToken() && window.xanoHooks.length !== 0) {
+
+                window.xanoGetUser();
+
+            } else if(localStorage.getItem('xano_user_is_logged_in') == true) {
+
+                window.xanoLogUserOut();
+
+            }
+
+        }
+
+    });
+
+</script>
+

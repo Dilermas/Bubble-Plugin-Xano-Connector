@@ -1,0 +1,44 @@
+{
+    "category": "plugins",
+    "display": "Sign the Xano user up",
+    "fields": {
+        "ADv": {
+            "caption": "First name",
+            "editor": "DynamicValue",
+            "name": "name_first",
+            "optional": true,
+            "rank": 0,
+            "value": "text"
+        },
+        "ADw": {
+            "caption": "Last name",
+            "editor": "DynamicValue",
+            "name": "name_last",
+            "optional": true,
+            "rank": 1,
+            "value": "text"
+        },
+        "ADx": {
+            "caption": "Email",
+            "editor": "DynamicValue",
+            "name": "email",
+            "rank": 2,
+            "value": "text"
+        },
+        "ADy": {
+            "caption": "Password",
+            "editor": "DynamicValue",
+            "name": "password",
+            "rank": 3,
+            "value": "text"
+        },
+        "AEB": {
+            "caption": "Additional fields",
+            "editor": "key_value_list",
+            "name": "additional_fields",
+            "rank": 4,
+            "value": "text"
+        }
+    },
+    "type": "client_side"
+}

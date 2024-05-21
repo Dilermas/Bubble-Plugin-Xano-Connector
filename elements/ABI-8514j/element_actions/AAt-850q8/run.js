@@ -6,41 +6,13 @@ function(instance, properties, context) {
    
     // Post to the login endpoint
     
-    xano.post('/auth/login',{
+    let body = {
         
         'email': properties.email,
         'password': properties.password
         
-    }).then(
-        
-        // Success
-        
-        function(res) {
-            
-            let body = res.getBody();
-            // console.log(JSON.stringify(res));
-            // console.log(body.authToken);
-			xano.setAuthToken(body.authToken);    
-            data.get_user(body.authToken);        
-        },
-
-        // Error
-        
-        function(error) {
-            
-            context.reportDebugger(error.message);
-            
-            var res = error.getResponse();
-            
-            let body = res.getBody();
-            
-            context.reportDebugger(body.message);
-            
-            publish('error_message', body.message);
-            publish('error_code', body.code);
-            publish('status_code', res.getStatusCode());
-            trigger('threw_an_error');
-        }
-    );
+    }
+    
+    window.xanoLogUserIn(body);
 
 }

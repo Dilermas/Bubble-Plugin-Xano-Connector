@@ -1,5 +1,6 @@
 {
-    "caption": "Sign the Xano user up via",
+    "caption": "Xano auth sign up (deprecated - see notes)",
+    "doc": "Please replace with the action 'Sign the Xano user up'",
     "fields": {
         "AAp": {
             "caption": "Email",

@@ -1,0 +1,15 @@
+{
+    "calls": {
+        "AFU": {
+            "initialized": true,
+            "method": "get",
+            "name": "Realtime Message",
+            "publish_as": "data",
+            "rank": 0,
+            "ret_value": "api.1667758971605x316889048071536640.plugin_api.AFU",
+            "should_reinitialize": true,
+            "types": "{\"plugin_api.AFU\":{\"caption\":\"Realtime Message\",\"fields\":{\"_p_client.permissions.dbo_id\":{\"ret_btype\":\"number\",\"caption\":\"client permissions dbo_id\",\"sample_value\":0,\"path\":[\"client\",\"permissions\",\"dbo_id\"]},\"_p_client.permissions.row_id\":{\"ret_btype\":\"number\",\"caption\":\"client permissions row_id\",\"sample_value\":0,\"path\":[\"client\",\"permissions\",\"row_id\"]},\"_p_client.socketId\":{\"ret_btype\":\"text\",\"caption\":\"client socketId\",\"sample_value\":\"ea1b77b3-e2b1-4592-a43f-a478761e87f4\",\"path\":[\"client\",\"socketId\"]},\"_p_command\":{\"ret_btype\":\"text\",\"caption\":\"command\",\"sample_value\":\"[Realtime] Message\",\"path\":[\"command\"]},\"_p_commandOptions.channel\":{\"ret_btype\":\"text\",\"caption\":\"commandOptions channel\",\"sample_value\":\"channel-1\",\"path\":[\"commandOptions\",\"channel\"]},\"_p_payload\":{\"ret_btype\":\"text\",\"caption\":\"payload\",\"sample_value\":\"hi Wyatt\",\"path\":[\"payload\"]}}}}"
+        }
+    },
+    "human": "Xano Connector"
+}
